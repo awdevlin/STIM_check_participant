@@ -19,7 +19,7 @@ def check_cal_data(walk_dir):
     for (root, dirs, files) in os.walk(walk_dir):
         if search_csv in files:
             find_missing_cal(os.path.join(root, search_csv))
-            print(root.replace("Ultrasound Calibration Data", ''))
+            print(root.replace(r"\Ultrasound Calibration Data", ''))
     clean_cal_csv(cal_to_take)
 
 
@@ -110,8 +110,7 @@ def find_unprocessed(walk_dir):
                         processed = True
             if not processed:
                 participant_path = '/'.join(root.split('\\')[:-1])
-                # print(f"participant_path: {participant_path}")
-                print(f"root {root}")
+                print(root)
                 write_csv_line(unprocessed_paticipants, [root])
                 break
     if not os.path.exists(unprocessed_paticipants):
